@@ -1,0 +1,19 @@
+@use "./base/variables" as *;
+@use "./base/reset";
+@use "./base/mixins" as *;
+@use "./layout/header";
+@use "./layout/footer";
+
+html, body {
+  font-family: $font-main;
+  background: $color-bg;
+  color: $color-text;
+}
+
+main {
+  @include container;
+  padding-bottom: $space-4;
+}
+
+/* Test visuel temporaire — à enlever après */
+body.dev-border { outline: 2px dashed $color-primary; }

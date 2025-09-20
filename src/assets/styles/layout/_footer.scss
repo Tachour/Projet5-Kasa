@@ -1,0 +1,15 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.footer {
+  background: $color-footer-bg;
+  color: $color-footer-text;
+  padding: 40px 0;
+  text-align: center;
+
+  .footer-inner {
+    @include container;
+    display: flex;
+    justify-content: center;
+  }
+}
