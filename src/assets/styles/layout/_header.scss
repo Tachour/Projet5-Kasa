@@ -1,23 +1,50 @@
+/* src/assets/styles/layout/_header.scss */
 @use "../base/variables" as *;
 @use "../base/mixins" as *;
 
 .header {
-  @include container;
-  @include flex-between($space-3);
   padding-block: 40px;
 
-  .logo img { height: 68px; }
-
-  .nav {
+  .header__inner {
+    @include container;
     display: flex;
-    gap: $space-3;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-    a { text-transform: capitalize; }
-    a.active { text-decoration: underline; }
+  .header__logo img {
+    height: 68px;               // ~210×68 dans Figma
+    width: auto;
+    display: block;
+  }
+
+  .header__nav {
+    display: flex;
+    align-items: center;
+    gap: 57px;                   // espacement proche maquette
+  }
+
+  .header__link {
+    font-family: $font-main;
+    font-size: 24px;             // taille visible comme Figma
+    line-height: 1;
+    text-decoration: none;
+    text-transform: capitalize;  // Accueil / À propos
+    color: $color-text;
+    padding-bottom: 4px;         // espace pour l’underline actif
+
+    &.is-active {
+      text-decoration: underline;
+      text-underline-offset: 6px;
+      text-decoration-thickness: 2px;
+    }
   }
 
   @include respond(md) {
     padding-block: 20px;
-    .logo img { height: 46px; }
+
+    .header__logo img { height: 46px; }
+    .header__link { font-size: 18px; }
+    .header__nav { gap: 24px; }
   }
 }
