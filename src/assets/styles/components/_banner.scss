@@ -1,0 +1,59 @@
+/* src/assets/styles/components/_banner.scss */
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+.banner {
+  @include container;
+  position: relative;
+  height: 223px;                 // 223px desktop (maquette)
+  border-radius: 25px;
+  overflow: hidden;
+  margin-top: $space-4;
+ background: #000; // ou $color-footer-bg si tu préfères
+
+  /* Image de fond (optionnelle) */
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;           // couvre toute la bannière
+  }
+
+  /* Voile sombre par-dessus l'image */
+  .banner__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,.3), rgba(0,0,0,.3));
+    border-radius: 25px;
+    pointer-events: none;
+  }
+
+  /* Titre centré */
+  .banner__title {
+    position: relative;          // au-dessus de l’overlay
+    z-index: 1;
+    color: #fff;
+    font-size: 48px;
+    line-height: 1.1;
+    text-align: center;
+    padding-inline: 16px;
+    display: grid;
+    place-items: center;
+    height: 100%;
+  }
+
+  @include respond(md) {
+    height: 111px;               // hauteur mobile
+    .banner__title {
+      font-size: 24px;
+      text-align: left;          // maquette mobile : aligné à gauche
+      place-items: start center;
+    }
+  }
+}
+
+/* Variante sans titre (utile pour About si tu veux juste une image) */
+.banner--no-title {
+  .banner__title { display: none; }
+}
