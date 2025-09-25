@@ -15,7 +15,6 @@ export default function Collapse({ title, children, defaultOpen = false }) {
 >
             <span className="collapse__title">{title}</span>
 
-            {/* Chevron SVG blanc, arrondi, même look que la maquette */}
             <svg
   className="collapse__chevron"
   width="18"

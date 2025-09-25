@@ -9,7 +9,7 @@
 @use "./components/card";
 @use "./components/collapse";
 
-/* ===== Layout global (flex) ===== */
+
 html, body, #root { height: 100%; }
 html, body { overflow-x: hidden; }
 body {
@@ -21,79 +21,78 @@ body {
 
 #root { min-height: 100vh; display: flex; flex-direction: column; }
 
-/* Header / Footer d'après Figma */
+
 .header { 
   flex: 0 0 auto;
-  margin: 0;                     /* pas de marge externe */
-  /* hauteur visuelle ≈ 68px : on gère plutôt via padding interne du header__inner */
+  margin: 0;                     
+  
 }
 .footer { 
   flex: 0 0 auto; 
-  margin: 0;                     /* pas de marge externe */
-  min-height: 209px;             /* Figma footer height */
+  margin: 0;                     
+  min-height: 209px;             
 }
 
-/* Le contenu occupe l'espace restant */
+
 main#content { 
   flex: 1 0 auto; 
-  padding-bottom: 0;             /* évite de pousser le footer */
+  padding-bottom: 0;             
 }
 
-/* ===== Container Figma (1240px) ===== */
+
 .container { 
-  @include container;            /* ton mixin : width:1240px + auto margins + gutters */
-  max-width: 1240px;             /* garde une borne explicite */
+  @include container;            
+  max-width: 1240px;             
 }
 
-/* ===== Header inner (1240px / 68px) ===== */
+
 .header .header__inner {
   @include container;
   max-width: 1240px;
-  height: 68px;                  /* cible Figma */
-  padding: 0 16px;               /* Figma montre 16px de padding latéral */
+  height: 68px;                  
+  padding: 0 16px;               
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-/* ===== PAGE ABOUT (D_A-Propos) ===== */
-/* Le cadre global Figma indique : padding-top:40px, gap:38px */
+
 .about .container {
   @include container;
   max-width: 1240px;
-  padding-top: 40px;             /* Figma */
-  padding-bottom: 0;             /* pas de marge basse pour éviter le scroll */
+  padding-top: 40px;             
+  padding-bottom: 0;             
   display: grid;
-  row-gap: 38px;                 /* Figma gap */
+  row-gap: 38px;                 
 }
 
-/* Body (1240 x 559) : on évite les marges externes */
+
 .about__banner {
-  height: 200px;                 /* ajustable ; 200–220px marche bien selon ta capture */
+  height: 200px;                 
   border-radius: 20px;
   overflow: hidden;
   background: #eee url("/Image_about.svg") center / cover no-repeat;
-  margin: 0;                     /* important : pas de margin qui allonge la page */
+  margin: 0;                     
 }
 
-/* Pile des collapses : Figma gap ~38px entre blocs */
+
 .about__collapses {
   display: grid;
-  row-gap: 38px;                 /* cohérent Figma */
-  margin: 0;                     /* pas de marge externe */
-  padding-bottom: 8px;           /* petit souffle avant le footer sans créer de scroll */
+  row-gap: 38px;                 
+  margin: 0;                     
+  padding-bottom: 8px;           
 }
 
-/* Collapses largeur pleine du container */
+
 .collapse { display: block; width: 100%; }
 .collapse__header { width: 100%; }
 
-/* ===== Footer inner (1240 x 209) ===== */
+
 .footer .footer__inner {
   @include container;
   max-width: 1240px;
-  min-height: 209px;             /* Figma */
-  padding: 16px;                 /* Figma indique 16px de padding */
+  min-height: 209px;             
+  padding: 16px;                 
   display: grid;
   place-items: center;
 }

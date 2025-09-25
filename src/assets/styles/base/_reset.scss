@@ -1,15 +1,14 @@
 /* ========== RESET / BASE ========== */
-/* (garde ton reset existant si tu en as un) */
 * { box-sizing: border-box; }
 html, body, #root { height: 100%; }
 body { margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
 
 /* ========== VARIABLES ========== */
 :root {
-  --header-h: 88px;      /* ajuste selon ton header réel */
-  --footer-h: 210px;     /* ajuste selon ton footer réel */
-  --container: 1240px;   /* largeur max desktop */
-  --gutter: 24px;        /* marges latérales */
+  --header-h: 88px;      
+  --footer-h: 210px;     
+  --container: 1240px;   
+  --gutter: 24px;        
   --brand: #ff6060;
   --bg-soft: #f6f6f6;
   --text: #333;
@@ -30,13 +29,7 @@ main#content {
   margin: 0 auto;
 }
 
-/* ========== HEADER / NAV (optionnel, garde ton style) ========== */
-/* .header { } */
 
-/* ========== FOOTER (optionnel) ========== */
-/* .footer { } */
-
-/* ========== BANNER GÉNÉRIQUE (si tu en as une) ========== */
 /* .banner { } */
 
 /* ========== COLLAPSE (réutilisable About + Logement) ========== */
@@ -53,13 +46,13 @@ main#content {
 }
 .collapse__title { line-height: 1.2; }
 
-/* Chevron SVG : fermé = ^ (haut), ouvert = v (bas) */
+
 .collapse__chevron {
   display: inline-block; width: 18px; height: 18px;
   transition: transform 200ms ease;
-  transform: none; /* fermé -> ^ */
+  transform: none; 
 }
-.collapse.is-open .collapse__chevron { transform: rotate(180deg); } /* ouvert -> v */
+.collapse.is-open .collapse__chevron { transform: rotate(180deg); } 
 
 .collapse__content {
   max-height: 0; overflow: hidden;
@@ -79,7 +72,7 @@ main#content {
 }
 
 .about .about__banner {
-  height: 220px; /* ajuste selon Figma */
+  height: 220px; 
   border-radius: 20px;
   overflow: hidden;
   background: #eee url("/about-banner.jpg") center/cover no-repeat;
@@ -91,7 +84,7 @@ main#content {
   display: grid; gap: 18px; margin-bottom: 40px;
 }
 
-/* ========== RESPONSIVE ========== */
+
 @media (max-width: 768px) {
   :root { --gutter: 16px; }
   .about .about__banner { height: 160px; border-radius: 12px; }

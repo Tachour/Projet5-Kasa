@@ -5,7 +5,6 @@ export default function About() {
   return (
     <main className="about">
       <section className="about__banner" aria-hidden="true">
-        {/* Optionnel : une image de bannière */}
         <img src="/Image_about.svg" alt="" />
       </section>
 
