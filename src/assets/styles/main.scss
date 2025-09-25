@@ -7,13 +7,98 @@
 
 @use "./components/banner";
 @use "./components/card";
+@use "./components/collapse";
 
-
-html, body { font-family: $font-main; color: $color-text; background: $color-bg; }
-
-main {
-  @include container;
-  padding-bottom: $space-4;
+/* ===== Layout global (flex) ===== */
+html, body, #root { height: 100%; }
+html, body { overflow-x: hidden; }
+body {
+  margin: 0;
+  font-family: $font-main;
+  color: $color-text;
+  background: $color-bg;
 }
 
+#root { min-height: 100vh; display: flex; flex-direction: column; }
 
+/* Header / Footer d'après Figma */
+.header { 
+  flex: 0 0 auto;
+  margin: 0;                     /* pas de marge externe */
+  /* hauteur visuelle ≈ 68px : on gère plutôt via padding interne du header__inner */
+}
+.footer { 
+  flex: 0 0 auto; 
+  margin: 0;                     /* pas de marge externe */
+  min-height: 209px;             /* Figma footer height */
+}
+
+/* Le contenu occupe l'espace restant */
+main#content { 
+  flex: 1 0 auto; 
+  padding-bottom: 0;             /* évite de pousser le footer */
+}
+
+/* ===== Container Figma (1240px) ===== */
+.container { 
+  @include container;            /* ton mixin : width:1240px + auto margins + gutters */
+  max-width: 1240px;             /* garde une borne explicite */
+}
+
+/* ===== Header inner (1240px / 68px) ===== */
+.header .header__inner {
+  @include container;
+  max-width: 1240px;
+  height: 68px;                  /* cible Figma */
+  padding: 0 16px;               /* Figma montre 16px de padding latéral */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ===== PAGE ABOUT (D_A-Propos) ===== */
+/* Le cadre global Figma indique : padding-top:40px, gap:38px */
+.about .container {
+  @include container;
+  max-width: 1240px;
+  padding-top: 40px;             /* Figma */
+  padding-bottom: 0;             /* pas de marge basse pour éviter le scroll */
+  display: grid;
+  row-gap: 38px;                 /* Figma gap */
+}
+
+/* Body (1240 x 559) : on évite les marges externes */
+.about__banner {
+  height: 200px;                 /* ajustable ; 200–220px marche bien selon ta capture */
+  border-radius: 20px;
+  overflow: hidden;
+  background: #eee url("/Image_about.svg") center / cover no-repeat;
+  margin: 0;                     /* important : pas de margin qui allonge la page */
+}
+
+/* Pile des collapses : Figma gap ~38px entre blocs */
+.about__collapses {
+  display: grid;
+  row-gap: 38px;                 /* cohérent Figma */
+  margin: 0;                     /* pas de marge externe */
+  padding-bottom: 8px;           /* petit souffle avant le footer sans créer de scroll */
+}
+
+/* Collapses largeur pleine du container */
+.collapse { display: block; width: 100%; }
+.collapse__header { width: 100%; }
+
+/* ===== Footer inner (1240 x 209) ===== */
+.footer .footer__inner {
+  @include container;
+  max-width: 1240px;
+  min-height: 209px;             /* Figma */
+  padding: 16px;                 /* Figma indique 16px de padding */
+  display: grid;
+  place-items: center;
+}
+
+@media (max-height: 820px) {
+  .about__banner { height: 180px; }
+  .about .container { padding-top: 32px; row-gap: 28px; }
+}

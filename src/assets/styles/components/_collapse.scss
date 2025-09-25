@@ -1,0 +1,78 @@
+/* ------- Collapse ------- */
+.collapse {
+  border-radius: 8px;
+  overflow: hidden;
+  background: #f6f6f6;
+
+  & + .collapse {
+    margin-top: 16px;
+  }
+}
+
+.collapse__header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  background: #ff6060; /* couleur Kasa */
+  color: #fff;
+  font-weight: 600;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.collapse__title {
+  line-height: 1.2;
+}
+
+/* Chevron SVG : FERMÉ = ^ (haut), OUVERT = v (bas) */
+.collapse__chevron {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  transition: transform 200ms ease;
+  /* fermé -> ^ (orientation par défaut du SVG) */
+  transform: none;
+}
+.collapse.is-open .collapse__chevron {
+  /* ouvert -> v */
+  transform: rotate(180deg);
+}
+
+.collapse__content {
+  /* Animation ouverture/fermeture via max-height */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 250ms ease;
+  background: #f6f6f6;
+}
+.collapse.is-open .collapse__content {
+  /* valeur suffisamment grande pour contenir le contenu */
+  max-height: 600px;
+}
+
+.collapse__inner {
+  padding: 16px;
+  color: #333;
+
+  ul {
+    padding-left: 18px;
+    list-style: disc;
+    li { margin: 4px 0; }
+  }
+}
+
+/* Option responsive */
+@media (max-width: 768px) {
+  .collapse__header {
+    padding: 12px 14px;
+    font-size: 0.95rem;
+  }
+  .collapse__inner {
+    padding: 12px 14px;
+  }
+}
+

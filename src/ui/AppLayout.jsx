@@ -1,9 +1,11 @@
 import { Outlet, NavLink, Link } from "react-router-dom";
 
 export default function AppLayout() {
+  const year = new Date().getFullYear();
+
   return (
     <>
-      <header className="header">
+      <header className="header" role="banner">
         <div className="header__inner">
           <Link to="/" className="header__logo" aria-label="Kasa, accueil">
             <img src="/logo-kasa.svg" alt="Kasa" />
@@ -19,8 +21,9 @@ export default function AppLayout() {
             >
               Accueil
             </NavLink>
+
             <NavLink
-              to="/about"
+              to="/about"  // ← aligne avec le router
               className={({ isActive }) =>
                 isActive ? "header__link is-active" : "header__link"
               }
@@ -31,17 +34,16 @@ export default function AppLayout() {
         </div>
       </header>
 
-      <main>
+      <main id="content">
         <Outlet />
       </main>
 
-      <footer className="footer">
-  <div className="footer__inner">
-    <img src="/footer-logo.svg" alt="Kasa" className="footer__logo" />
-    <p className="footer__copy">© 2020 Kasa. All rights reserved</p>
-  </div>
-</footer>
-
+      <footer className="footer" role="contentinfo">
+        <div className="footer__inner">
+          <img src="/footer-logo.svg" alt="Kasa" className="footer__logo" />
+          <p className="footer__copy">© {year} Kasa. All rights reserved</p>
+        </div>
+      </footer>
     </>
   );
 }
