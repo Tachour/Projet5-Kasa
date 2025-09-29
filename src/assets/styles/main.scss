@@ -9,6 +9,10 @@
 @use "./components/card";
 @use "./components/collapse";
 
+@use "./pages/notfound";
+
+
+
 
 html, body, #root { height: 100%; }
 html, body { overflow-x: hidden; }

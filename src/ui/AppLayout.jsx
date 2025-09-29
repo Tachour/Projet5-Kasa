@@ -41,9 +41,10 @@ export default function AppLayout() {
       <footer className="footer" role="contentinfo">
         <div className="footer__inner">
           <img src="/footer-logo.svg" alt="Kasa" className="footer__logo" />
-          <p className="footer__copy">© {year} Kasa. All rights reserved</p>
+          <p className="footer__copy">© 2020 Kasa. All rights reserved</p>
         </div>
       </footer>
+
     </>
   );
 }
