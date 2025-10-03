@@ -1,78 +1,21 @@
-/* ------- Collapse ------- */
-.collapse {
-  border-radius: 8px;
-  overflow: hidden;
-  background: #f6f6f6;
-
-  & + .collapse {
-    margin-top: 16px;
-  }
-}
-
+.collapse { border-radius: 8px; overflow: hidden; background: #f6f6f6; }
 .collapse__header {
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display:flex; align-items:center; justify-content:space-between;
   gap: 12px;
   padding: 14px 16px;
-  background: #ff6060; 
-  color: #fff;
-  font-weight: 600;
-  border: 0;
-  cursor: pointer;
-  text-align: left;
+  background:#ff6060; color:#fff; font-weight:600; border:0; cursor:pointer; text-align:left;
 }
+.collapse__title { line-height: 1.2; }
+.collapse__chevron { width: 18px; height: 18px; transition: transform .2s; }
+.collapse.is-open .collapse__chevron { transform: rotate(180deg); }
+.collapse__content { max-height:0; overflow:hidden; transition:max-height .25s; background:#f6f6f6; }
+.collapse.is-open .collapse__content { max-height:800px; }
+.collapse__inner { padding:16px; color:#333; }
 
-.collapse__title {
-  line-height: 1.2;
+/* mobile 375 */
+@media (max-width: 480px) {
+  .collapse__header { padding: 12px 14px; }
+  .collapse__chevron { width: 16px; height: 16px; }
+  .collapse__inner { padding: 12px 14px; }
 }
-
-
-.collapse__chevron {
-  display: inline-block;
-  width: 18px;
-  height: 18px;
-  transition: transform 200ms ease;
-  
-  transform: none;
-}
-.collapse.is-open .collapse__chevron {
-  
-  transform: rotate(180deg);
-}
-
-.collapse__content {
-  
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 250ms ease;
-  background: #f6f6f6;
-}
-.collapse.is-open .collapse__content {
-  
-  max-height: 600px;
-}
-
-.collapse__inner {
-  padding: 16px;
-  color: #333;
-
-  ul {
-    padding-left: 18px;
-    list-style: disc;
-    li { margin: 4px 0; }
-  }
-}
-
-/* Option responsive */
-@media (max-width: 768px) {
-  .collapse__header {
-    padding: 12px 14px;
-    font-size: 0.95rem;
-  }
-  .collapse__inner {
-    padding: 12px 14px;
-  }
-}
-

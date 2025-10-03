@@ -1,4 +1,3 @@
-/* src/assets/styles/layout/_header.scss */
 @use "../base/variables" as *;
 @use "../base/mixins" as *;
 
@@ -6,32 +5,24 @@
   padding-block: 40px;
 
   .header__inner {
-    @include container;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
   }
 
-  .header__logo img {
-    height: 68px;               // ~210×68 dans Figma
-    width: auto;
-    display: block;
-  }
+  .header__logo img { height: 68px; width: auto; display: block; }
 
-  .header__nav {
-    display: flex;
-    align-items: center;
-    gap: 57px;                   // espacement proche maquette
-  }
+  .header__nav { display: flex; align-items: center; gap: 57px; }
 
   .header__link {
     font-family: $font-main;
-    font-size: 24px;             // taille visible comme Figma
+    font-size: 24px;
     line-height: 1;
     text-decoration: none;
-    text-transform: capitalize;  // Accueil / À propos
+    text-transform: capitalize;
     color: $color-text;
-    padding-bottom: 4px;         // espace pour l’underline actif
+    padding-bottom: 4px;
 
     &.is-active {
       text-decoration: underline;
@@ -40,11 +31,30 @@
     }
   }
 
-  @include respond(md) {
+  /* ===== Mobile 375–480 ===== */
+  @media (max-width: 480px) {
     padding-block: 20px;
 
     .header__logo img { height: 46px; }
-    .header__link { font-size: 18px; }
-    .header__nav { gap: 24px; }
+
+    /* Nav mobile : specs Figma */
+    .header__nav {
+      gap: 26px;                 /* _Nav ≈ 190px → gap 26px */
+      align-items: flex-end;     /* alignement bas */
+    }
+
+    .header__link {
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1.43;         /* ≈ 17px */
+      text-transform: uppercase; /* ACCUEIL / A PROPOS */
+      padding-bottom: 0;
+
+      &.is-active {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+        text-decoration-thickness: 1.5px;
+      }
+    }
   }
 }

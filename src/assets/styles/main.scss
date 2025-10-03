@@ -2,20 +2,24 @@
 @use "./base/reset";
 @use "./base/mixins" as *;
 
+/* Layout */
 @use "./layout/header";
 @use "./layout/footer";
 
+/* Components */
 @use "./components/banner";
 @use "./components/card";
 @use "./components/collapse";
+@use "./components/slideshow";
 
+/* Pages */
 @use "./pages/notfound";
+@use "./pages/logement";
 
-
-
-
+/* ===== Global App Frame ===== */
 html, body, #root { height: 100%; }
 html, body { overflow-x: hidden; }
+
 body {
   margin: 0;
   font-family: $font-main;
@@ -24,84 +28,19 @@ body {
 }
 
 #root { min-height: 100vh; display: flex; flex-direction: column; }
+.header { flex: 0 0 auto; margin: 0; }
+.footer { flex: 0 0 auto; margin: 0; }      /* <= pas de min-height/padding ici */
+main#content { flex: 1 0 auto; }
 
-
-.header { 
-  flex: 0 0 auto;
-  margin: 0;                     
-  
-}
-.footer { 
-  flex: 0 0 auto; 
-  margin: 0;                     
-  min-height: 209px;             
-}
-
-
-main#content { 
-  flex: 1 0 auto; 
-  padding-bottom: 0;             
-}
-
-
-.container { 
-  @include container;            
-  max-width: 1240px;             
-}
-
-
-.header .header__inner {
-  @include container;
+/* ===== Container utilitaire (partagé header/pages) ===== */
+.container {
+  @include container;                 /* provient de base/mixins */
   max-width: 1240px;
-  height: 68px;                  
-  padding: 0 16px;               
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
-
-.about .container {
-  @include container;
-  max-width: 1240px;
-  padding-top: 40px;             
-  padding-bottom: 0;             
-  display: grid;
-  row-gap: 38px;                 
-}
-
-
-.about__banner {
-  height: 200px;                 
-  border-radius: 20px;
-  overflow: hidden;
-  background: #eee url("/Image_about.svg") center / cover no-repeat;
-  margin: 0;                     
-}
-
-
-.about__collapses {
-  display: grid;
-  row-gap: 38px;                 
-  margin: 0;                     
-  padding-bottom: 8px;           
-}
-
-
-.collapse { display: block; width: 100%; }
-.collapse__header { width: 100%; }
-
-
-.footer .footer__inner {
-  @include container;
-  max-width: 1240px;
-  min-height: 209px;             
-  padding: 16px;                 
-  display: grid;
-  place-items: center;
-}
-
-@media (max-height: 820px) {
-  .about__banner { height: 180px; }
-  .about .container { padding-top: 32px; row-gap: 28px; }
+/* Le style interne du footer (fond noir, min-height, padding, centrage)
+   est géré dans layout/_footer.scss pour éviter les doublons. */
+@media (max-width: 480px) {
+  /* 375 - 2*20 = 335px de largeur utile, comme sur Figma */
+  .container { padding-left: 20px; padding-right: 20px; }
 }

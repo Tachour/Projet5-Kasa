@@ -2,27 +2,38 @@
 @use "../base/mixins" as *;
 
 .footer {
-  background: $color-footer-bg; // noir
-  color: $color-footer-text;    // blanc
-  padding: 66px 0;              // proche maquette
+  background: $color-footer-bg;   /* noir (maquette) */
+  color: $color-footer-text;      /* blanc */
 
   .footer__inner {
-    @include container;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 28px;                  // espace entre logo et texte
+    @include container;           /* même largeur/gouttières que le header */
+    min-height: 209px;            /* maquette desktop */
+    padding-block: 32px;          /* air vertical interne */
+    display: grid;
+    place-items: center;          /* centre logo + texte */
+    row-gap: 12px;
+    text-align: center;
   }
 
   .footer__logo {
-    height: 40px;               // ~122×40 dans la maquette
+    height: 40px;
     width: auto;
     display: block;
   }
 
   .footer__copy {
-    font-size: 24px;
+    margin: 0;
+    font-size: clamp(12px, 2.2vw, 18px);
     line-height: 1.2;
-    text-align: center;
+  }
+
+  /* Mobile */
+  @media (max-width: 480px) {
+    .footer__inner {
+    min-height: 209px;   /* maquette */
+    padding-block: 32px; /* même air que le desktop, tu peux réduire à 24px si besoin */
+  }
+    .footer__logo { height: 32px; }
+    .footer__copy { font-size: 14px; }
   }
 }

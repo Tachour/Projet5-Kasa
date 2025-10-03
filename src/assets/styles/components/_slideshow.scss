@@ -1,0 +1,78 @@
+/* ===== Slideshow (version safe, sans variables ni mixins) ===== */
+.slideshow {
+  position: relative;
+  border-radius: 25px;
+  overflow: hidden; /* masque l'image quand les coins sont arrondis */
+}
+
+.slideshow__frame { margin: 0; }
+
+.slideshow__img {
+  display: block;
+  width: 100%;
+  height: 415px;         /* hauteur desktop maquette */
+  object-fit: cover;
+  border-radius: 25px;   /* garde l’arrondi même si overflow est retiré ailleurs */
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Flèches */
+.slideshow__ctrl {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 0;
+  padding: 0;
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.slideshow__ctrl--prev { left: 16px; }
+.slideshow__ctrl--next { right: 16px; }
+
+.slideshow__ctrl img {
+  display: block;
+  width: 28px;           /* taille de l’icône */
+  height: auto;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.5));
+}
+
+/* Compteur 1/5 */
+.slideshow__count {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  text-shadow: 0 2px 4px rgba(0,0,0,.6);
+}
+
+/* ===== Mobile 375–480 ===== */
+@media (max-width: 480px) {
+  .slideshow {
+    border-radius: 15px;
+  }
+  .slideshow__img {
+    height: 255px;       /* hauteur mobile maquette */
+    border-radius: 15px;
+  }
+  .slideshow__ctrl {
+    width: 36px;
+    height: 36px;
+  }
+  .slideshow__ctrl img { width: 20px; }
+  .slideshow__ctrl--prev { left: 8px; }
+  .slideshow__ctrl--next { right: 8px; }
+  .slideshow__count {
+    font-size: 12px;
+    bottom: 10px;
+  }
+}
