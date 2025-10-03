@@ -1,18 +1,21 @@
-import { useParams } from "react-router-dom";
+import { useParams, Navigate, useLocation } from "react-router-dom";
 import logements from "../data/logements.json";
 import Collapse from "../components/Collapse.jsx";
-import NotFound from "./NotFound.jsx";
 import Slideshow from "../components/Slideshow.jsx";
 
 export default function Logement() {
   const { id } = useParams();
+  const location = useLocation();
   const logement = logements.find((item) => item.id === id);
 
-  if (!logement) return <NotFound />;
+  // Redirection propre vers /404 si l'id est inconnu
+  if (!logement) {
+    return <Navigate to="/404" replace state={{ from: location.pathname }} />;
+  }
 
   const {
     title,
-    location,
+    location: city,
     pictures = [],
     tags = [],
     host = { name: "", picture: "" },
@@ -25,18 +28,17 @@ export default function Logement() {
 
   return (
     <main className="logement" id="content">
-      {/* même container que le header pour aligner les largeurs */}
       <div className="container">
         {/* Galerie / Carrousel */}
         <div className="logement__gallery">
           <Slideshow images={pictures} title={title} />
         </div>
 
-        {/* En-tête infos (gauche) + hôte/rating (droite) */}
+        {/* En-tête : infos (gauche) + hôte/rating (droite) */}
         <header className="logement__top">
           <div className="logement__info">
             <h1 className="logement__title">{title}</h1>
-            <p className="logement__location">{location}</p>
+            <p className="logement__location">{city}</p>
 
             {tags.length > 0 && (
               <ul className="logement__tags" aria-label="Étiquettes">

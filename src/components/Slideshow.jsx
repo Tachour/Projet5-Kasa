@@ -50,7 +50,7 @@ export default function Slideshow({ images = [], title = "Galerie" }) {
     >
       <figure className="slideshow__frame">
         <img
-          key={slides[index]} // force le refresh de l'img (utile si animations)
+          key={slides[index]} 
           src={slides[index]}
           alt={`${title} — image ${index + 1} sur ${slides.length}`}
           className="slideshow__img"
