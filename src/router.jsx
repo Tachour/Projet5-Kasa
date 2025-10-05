@@ -14,7 +14,6 @@ export const router = createBrowserRouter([
       { path: "about", element: <About /> },
       { path: "a-propos", element: <About /> },
       { path: "logement/:id", element: <Logement /> }, 
-      { path: "404", element: <NotFound /> },
       { path: "*", element: <NotFound /> },
     ],
   },
