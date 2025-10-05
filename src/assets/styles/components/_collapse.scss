@@ -33,7 +33,6 @@
   transform: rotate(180deg);
 }
 
-/* Contenu animé par le JS (height + opacity) */
 .collapse__content {
   overflow: hidden;              
   height: 0;                     
@@ -41,7 +40,6 @@
   background: #f6f6f6;
 }
 
-/* Inner : padding & typo */
 .collapse__inner {
   padding: 16px;
   color: #333;

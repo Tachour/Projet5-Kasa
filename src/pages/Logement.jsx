@@ -8,7 +8,6 @@ export default function Logement() {
   const location = useLocation();
   const logement = logements.find((item) => item.id === id);
 
-  // Redirection propre vers /404 si l'id est inconnu
   if (!logement) {
     return <Navigate to="/404" replace state={{ from: location.pathname }} />;
   }
@@ -29,12 +28,10 @@ export default function Logement() {
   return (
     <main className="logement" id="content">
       <div className="container">
-        {/* Galerie / Carrousel */}
         <div className="logement__gallery">
           <Slideshow images={pictures} title={title} />
         </div>
 
-        {/* En-tête : infos (gauche) + hôte/rating (droite) */}
         <header className="logement__top">
           <div className="logement__info">
             <h1 className="logement__title">{title}</h1>
