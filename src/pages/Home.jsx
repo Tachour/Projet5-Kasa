@@ -3,11 +3,12 @@ import Card from "../components/Card.jsx";
 import logements from "../data/logements.json";
 
 export default function Home() {
+
   return (
     <>
       <Banner
         title="Chez vous, partout et ailleurs"
-        imageSrc="/banner-home.svg" 
+        imageSrc="/banner-home.svg"
       />
 
       <section className="cards-grid">

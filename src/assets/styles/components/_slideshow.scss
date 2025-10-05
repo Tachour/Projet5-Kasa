@@ -1,8 +1,8 @@
-/* ===== Slideshow (version safe, sans variables ni mixins) ===== */
+/* ===== Slideshow ===== */
 .slideshow {
   position: relative;
   border-radius: 25px;
-  overflow: hidden; /* masque l'image quand les coins sont arrondis */
+  overflow: hidden; 
 }
 
 .slideshow__frame { margin: 0; }
@@ -10,9 +10,9 @@
 .slideshow__img {
   display: block;
   width: 100%;
-  height: 415px;         /* hauteur desktop maquette */
+  height: 415px;         
   object-fit: cover;
-  border-radius: 25px;   /* garde l’arrondi même si overflow est retiré ailleurs */
+  border-radius: 25px;   
   user-select: none;
   -webkit-user-drag: none;
 }
@@ -37,7 +37,7 @@
 
 .slideshow__ctrl img {
   display: block;
-  width: 28px;           /* taille de l’icône */
+  width: 28px;           
   height: auto;
   pointer-events: none;
   filter: drop-shadow(0 2px 4px rgba(0,0,0,.5));
@@ -61,7 +61,7 @@
     border-radius: 15px;
   }
   .slideshow__img {
-    height: 255px;       /* hauteur mobile maquette */
+    height: 255px;       
     border-radius: 15px;
   }
   .slideshow__ctrl {

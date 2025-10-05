@@ -1,57 +1,52 @@
-/* ===== Desktop (inchangé) ===== */
 .logement { padding-bottom: clamp(16px, 4vh, 48px); } 
 
-.logement__top {
+.logement .logement__top {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: start;
   gap: 24px;
   margin-top: 16px;
   margin-bottom: 16px;
-  
 }
 
-.logement__info { min-width: 0; }
-.logement__title { margin: 0 0 6px; font-size: 32px; font-weight: 500; color: #FF6060; }
-.logement__location { margin: 0 0 12px; font-size: 16px; color: #333; }
+.logement .logement__info { min-width: 0; }
+.logement .logement__title { margin: 0 0 6px; font-size: 32px; font-weight: 500; color: #FF6060; }
+.logement .logement__location { margin: 0 0 12px; font-size: 16px; color: #333; }
 
-.logement__tags { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
-.tag { background: #FF6060; color:#fff; padding: 6px 18px; border-radius: 10px; font-size: 12px; line-height: 1; white-space: nowrap; }
+.logement .logement__tags { display: flex; flex-wrap: wrap; gap: 10px; row-gap: 8px; margin: 0; padding: 0; list-style: none; }
+.logement .tag { background: #FF6060; color:#fff; padding: 6px 18px; border-radius: 10px; font-size: 12px; line-height: 1; white-space: nowrap; }
 
-.logement__side { display: grid; justify-items: end; gap: 12px; }
-.host { display:flex; align-items:center; gap:10px; }
-.host__name { color:#FF6060; font-weight:500; font-size:14px; text-align:right; line-height:1.2; max-width:120px; }
-.host__picture { width:64px; height:64px; border-radius:50%; object-fit:cover; background:#d9d9d9; }
+.logement .logement__side { display: grid; justify-items: end; gap: 12px; }
+.logement .host { display:flex; align-items:center; gap:10px; }
+.logement .host__name { color:#FF6060; font-weight:500; font-size:14px; text-align:right; line-height:1.2; max-width:120px; }
+.logement .host__picture { width:64px; height:64px; border-radius:50%; object-fit:cover; background:#d9d9d9; }
 
-.rating { display:flex; gap:6px; }
-.star { font-size:18px; color:#E3E3E3; }
-.star.is-on { color:#FF6060; }
+.logement .rating { display:flex; gap:6px; }
+.logement .star { font-size:18px; color:#E3E3E3; }
+.logement .star.is-on { color:#FF6060; }
 
-.logement__rows {
+.logement .logement__rows {
   display:grid;
   grid-template-columns: 1fr 1fr;
   gap: 24px;
   margin-top: 8px;
   margin-bottom: 48px;
 }
-.logement__row { width:100%; }
+.logement .logement__row { width:100%; }
+
+
+.logement .logement__gallery { margin-top: 16px; margin-bottom: 16px; }
+.logement .logement__row .collapse { background: transparent; }
 
 /* ===== Mobile 375–480 ===== */
 @media (max-width: 480px) {
-  /* Container côté page (gouttières plus petites) */
-  .container { padding-left: 16px; padding-right: 16px; }
-
-  /* Titre plus compact, meilleur retour à la ligne */
-  .logement__title { font-size: 22px; line-height: 1.25; margin-bottom: 6px; }
-  .logement__location { margin-bottom: 12px; font-size: 14px; }
-
-  /* Tags : rangées multiples, espaces réduits */
-  .logement__tags { gap: 8px; margin-bottom: 12px; }
-  .tag { padding: 6px 14px; border-radius: 8px; font-size: 11px; }
-
-  /* Bloc droite : Host + Rating comme sur la maquette mobile */
-  .logement__top {
-    grid-template-columns: 1fr;   /* on empile */
+  .logement .container { padding-left: 16px; padding-right: 16px; }
+  .logement .logement__title { font-size: 22px; line-height: 1.25; margin-bottom: 6px; }
+  .logement .logement__location { margin-bottom: 12px; font-size: 14px; }
+  .logement .logement__tags { gap: 8px; row-gap: 8px; margin-bottom: 12px; }
+  .logement .tag { padding: 6px 14px; border-radius: 8px; font-size: 11px; }
+  .logement .logement__top {
+    grid-template-columns: 1fr;   
     gap: 12px;
   }
 
@@ -60,42 +55,38 @@
     row-gap: 27px;
   }
 
-  .logement__side {
+  .logement .logement__side {
     display: grid;
-    grid-template-columns: 1fr auto;  /* étoiles / host */
+    grid-template-columns: 1fr auto; 
     align-items: center;
-    gap: 30%;
+    column-gap: 16px;                  
   }
 
-  /* étoiles d'abord, plein largeur à gauche */
-  .rating {
+  .logement .rating {
     order: 1;
     grid-column: 1 / 2;
     justify-content: flex-start;
     gap: 8px;
   }
-  .star { font-size: 20px; }
+  .logement .star { font-size: 20px; }
 
-  /* host à droite (nom + avatar) */
-  .host {
+  .logement .host {
     order: 2;
     grid-column: 2 / 3;
     justify-self: end;
   }
-  .host__name { font-size: 12px; max-width: 90px; }
-  .host__picture { width: 40px; height: 40px; }
+  .logement .host__name { font-size: 12px; max-width: 90px; }
+  .logement .host__picture { width: 40px; height: 40px; }
 
-  /* Collapses en pile, boutons bien “tap targets” */
-  .logement__rows {
+  .logement .logement__rows {
     grid-template-columns: 1fr;
     gap: 16px;
     margin-bottom: 24px;
   }
 }
 
-/* Petite tablette 481–768 (optionnel pour lisser) */
 @media (min-width: 481px) and (max-width: 768px) {
-  .logement__title { font-size: 24px; }
-  .host__picture { width: 48px; height: 48px; }
-  .star { font-size: 20px; }
+  .logement .logement__title { font-size: 24px; }
+  .logement .host__picture { width: 48px; height: 48px; }
+  .logement .star { font-size: 20px; }
 }

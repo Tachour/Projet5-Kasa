@@ -4,17 +4,14 @@ export default function Slideshow({ images = [], title = "Galerie" }) {
   const slides = useMemo(() => images.filter(Boolean), [images]);
   const [index, setIndex] = useState(0);
 
-  // Si pas d'images -> rien à afficher
   if (!slides.length) return null;
 
   const hasControls = slides.length > 1;
 
-  // Remet l'index à 0 si la liste d'images change
   useEffect(() => {
     setIndex(0);
   }, [slides]);
 
-  // Assure que l'index reste valide si la longueur change (défensif)
   useEffect(() => {
     if (index >= slides.length) {
       setIndex(0);
@@ -31,7 +28,6 @@ export default function Slideshow({ images = [], title = "Galerie" }) {
   const goPrev = useCallback(() => go(-1), [go]);
   const goNext = useCallback(() => go(+1), [go]);
 
-  // Navigation clavier ← →
   useEffect(() => {
     if (!hasControls) return;
     const onKey = (e) => {

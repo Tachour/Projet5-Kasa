@@ -16,7 +16,6 @@
 @use "./pages/notfound";
 @use "./pages/logement";
 
-/* ===== Global App Frame ===== */
 html, body, #root { height: 100%; }
 html, body { overflow-x: hidden; }
 
@@ -29,18 +28,14 @@ body {
 
 #root { min-height: 100vh; display: flex; flex-direction: column; }
 .header { flex: 0 0 auto; margin: 0; }
-.footer { flex: 0 0 auto; margin: 0; }      /* <= pas de min-height/padding ici */
+.footer { flex: 0 0 auto; margin: 0; }      
 main#content { flex: 1 0 auto; }
 
-/* ===== Container utilitaire (partagé header/pages) ===== */
 .container {
-  @include container;                 /* provient de base/mixins */
+  @include container;                 
   max-width: 1240px;
 }
 
-/* Le style interne du footer (fond noir, min-height, padding, centrage)
-   est géré dans layout/_footer.scss pour éviter les doublons. */
 @media (max-width: 480px) {
-  /* 375 - 2*20 = 335px de largeur utile, comme sur Figma */
   .container { padding-left: 20px; padding-right: 20px; }
 }
