@@ -1,42 +1,33 @@
-import { useEffect, useMemo, useState, useCallback } from "react";
+import { useEffect, useState } from "react";
 
 export default function Slideshow({ images = [], title = "Galerie" }) {
-  const slides = useMemo(() => images.filter(Boolean), [images]);
+  const slides = images.filter(Boolean);
+
   const [index, setIndex] = useState(0);
 
-  if (!slides.length) return null;
+  if (slides.length === 0) return null;
 
-  const hasControls = slides.length > 1;
+  const total = slides.length;
+  const hasControls = total > 1;
 
   useEffect(() => {
     setIndex(0);
-  }, [slides]);
+  }, [total]);
 
-  useEffect(() => {
-    if (index >= slides.length) {
-      setIndex(0);
-    }
-  }, [index, slides.length]);
-
-  const go = useCallback(
-    (step) => {
-      setIndex((prev) => (prev + step + slides.length) % slides.length);
-    },
-    [slides.length]
-  );
-
-  const goPrev = useCallback(() => go(-1), [go]);
-  const goNext = useCallback(() => go(+1), [go]);
+  const prev = () => setIndex((i) => (i - 1 + total) % total);
+  const next = () => setIndex((i) => (i + 1) % total);
 
   useEffect(() => {
     if (!hasControls) return;
+
     const onKey = (e) => {
-      if (e.key === "ArrowLeft") goPrev();
-      if (e.key === "ArrowRight") goNext();
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
     };
+
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [hasControls, goPrev, goNext]);
+  }, [hasControls, total]); 
 
   return (
     <section
@@ -46,10 +37,9 @@ export default function Slideshow({ images = [], title = "Galerie" }) {
     >
       <figure className="slideshow__frame">
         <img
-          key={slides[index]} 
-          src={slides[index]}
-          alt={`${title} — image ${index + 1} sur ${slides.length}`}
           className="slideshow__img"
+          src={slides[index]}
+          alt={`${title} — image ${index + 1} sur ${total}`}
           draggable="false"
         />
       </figure>
@@ -60,7 +50,7 @@ export default function Slideshow({ images = [], title = "Galerie" }) {
             type="button"
             className="slideshow__ctrl slideshow__ctrl--prev"
             aria-label="Image précédente"
-            onClick={goPrev}
+            onClick={prev}
           >
             <img src="/prev.svg" alt="" aria-hidden="true" draggable="false" />
           </button>
@@ -69,16 +59,22 @@ export default function Slideshow({ images = [], title = "Galerie" }) {
             type="button"
             className="slideshow__ctrl slideshow__ctrl--next"
             aria-label="Image suivante"
-            onClick={goNext}
+            onClick={next}
           >
             <img src="/next.svg" alt="" aria-hidden="true" draggable="false" />
           </button>
 
-          <div className="slideshow__count" aria-live="polite">
-            {index + 1}/{slides.length}
+          <div
+            key={index}                 
+            className="slideshow__count"
+            aria-live="polite"
+          >
+            {index + 1}/{total}
           </div>
         </>
       )}
     </section>
   );
 }
+
+

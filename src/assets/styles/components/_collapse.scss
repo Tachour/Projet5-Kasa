@@ -4,55 +4,42 @@
   background: #f6f6f6;
 }
 
-/* Bouton d’entête */
-.collapse__header {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 14px 16px;
-  background: #ff6060;
-  color: #fff;
-  font-weight: 600;
-  border: 0;
-  cursor: pointer;
-  text-align: left;
+/* header */
+.collapse__header{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:14px 16px;background:#ff6060;color:#fff;font-weight:600;border:0;cursor:pointer;text-align:left;
+  list-style:none;
+}
+.collapse__header::-webkit-details-marker{display:none}
+.collapse__title{line-height:1.2}
+
+.collapse__chevron{width:18px;height:18px;transition:transform 300ms ease-in-out}
+.collapse[open] .collapse__chevron{transform:rotate(180deg)}
+
+/* 👉 Animation CSS SEULEMENT (slide basique) */
+.collapse__content{
+  overflow:hidden;
+  max-height:0;                /* fermé */
+  opacity:0;
+  background:#f6f6f6;
+  transition:max-height 300ms ease, opacity 300ms ease, transform 300ms ease;
+  transform: translateY(-4px);
+}
+.collapse[open] .collapse__content{
+  max-height:800px;            /* valeur "assez grande" pour couvrir ton contenu */
+  opacity:1;
+  transform: translateY(0);
 }
 
-/* Titre + chevron */
-.collapse__title { line-height: 1.2; }
+.collapse__inner{padding:16px;color:#333;line-height:1.5}
 
-.collapse__chevron {
-  width: 18px;
-  height: 18px;
-  transition: transform 300ms ease-in-out;
+/* Mobile */
+@media (max-width:480px){
+  .collapse__header{padding:12px 14px}
+  .collapse__chevron{width:16px;height:16px}
+  .collapse__inner{padding:12px 14px}
 }
-
-.collapse.is-open .collapse__chevron {
-  transform: rotate(180deg);
-}
-
-.collapse__content {
-  overflow: hidden;              
-  height: 0;                     
-  opacity: 0;                    
-  background: #f6f6f6;
-}
-
-.collapse__inner {
-  padding: 16px;
-  color: #333;
-  line-height: 1.5;
-}
-
-/* Mobile 375–480 */
-@media (max-width: 480px) {
-  .collapse__header { padding: 12px 14px; }
-  .collapse__chevron { width: 16px; height: 16px; }
-  .collapse__inner { padding: 12px 14px; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .collapse__chevron { transition: none !important; }
+@media (prefers-reduced-motion:reduce){
+  .collapse__chevron,
+  .collapse__content{transition:none !important}
 }
