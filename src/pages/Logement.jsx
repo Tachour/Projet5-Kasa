@@ -1,16 +1,18 @@
-import { useParams, Navigate, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import NotFound from "./NotFound.jsx"
 import logements from "../data/logements.json";
 import Collapse from "../components/Collapse.jsx";
 import Slideshow from "../components/Slideshow.jsx";
 
 export default function Logement() {
   const { id } = useParams();
-  const location = useLocation();
+
   const logement = logements.find((item) => item.id === id);
 
   if (!logement) {
-    return <Navigate to="/404" replace state={{ from: location.pathname }} />;
-  }
+  return <NotFound />;
+}
+
 
   const {
     title,
@@ -23,7 +25,7 @@ export default function Logement() {
     equipments = [],
   } = logement;
 
-  const numericRating = Number(rating) || 0;
+  const note = Number(rating) || 0;
 
   return (
     <main className="logement" id="content">
@@ -39,10 +41,8 @@ export default function Logement() {
 
             {tags.length > 0 && (
               <ul className="logement__tags" aria-label="Étiquettes">
-                {tags.map((t) => (
-                  <li key={t} className="tag">
-                    {t}
-                  </li>
+                {tags.map((tag) => (
+                  <li key={tag} className="tag">{tag}</li>
                 ))}
               </ul>
             )}
@@ -50,12 +50,13 @@ export default function Logement() {
 
           <div className="logement__side">
             <div className="host">
-              <span className="host__name">{host?.name}</span>
-              {host?.picture ? (
+              <span className="host__name">{host.name}</span>
+
+              {host.picture ? (
                 <img
                   className="host__picture"
                   src={host.picture}
-                  alt={host?.name || "Hôte"}
+                  alt={host.name || "Hôte"}
                   loading="lazy"
                 />
               ) : (
@@ -63,17 +64,9 @@ export default function Logement() {
               )}
             </div>
 
-            <div
-              className="rating"
-              role="img"
-              aria-label={`Note ${numericRating} sur 5`}
-            >
+            <div className="rating" role="img" aria-label={`Note ${note} sur 5`}>
               {Array.from({ length: 5 }, (_, i) => (
-                <span
-                  key={i}
-                  aria-hidden="true"
-                  className={i < numericRating ? "star is-on" : "star"}
-                >
+                <span key={i} aria-hidden="true" className={i < note ? "star is-on" : "star"}>
                   ★
                 </span>
               ))}
@@ -81,7 +74,7 @@ export default function Logement() {
           </div>
         </header>
 
-        {/* Deux colonnes : Description / Équipements */}
+        {/* Deux panneaux */}
         <section className="logement__rows" aria-label="Détails du logement">
           <div className="logement__row">
             <Collapse title="Description">
@@ -92,8 +85,8 @@ export default function Logement() {
           <div className="logement__row">
             <Collapse title="Équipements">
               <ul className="equipments">
-                {equipments.map((e) => (
-                  <li key={e}>{e}</li>
+                {equipments.map((item) => (
+                  <li key={item}>{item}</li>
                 ))}
               </ul>
             </Collapse>
