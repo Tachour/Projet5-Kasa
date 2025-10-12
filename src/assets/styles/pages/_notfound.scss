@@ -16,7 +16,7 @@
   &__text {
     font-size: 36px;
     color: #ff6060;
-    margin: 40px 0;         // 👈 ICI: bien "margin:" avec un point-virgule
+    margin: 40px 0;         
     line-height: 1.3;
   }
 
@@ -49,7 +49,7 @@
     &__code { font-size: 96px; }
     &__text {
       font-size: 18px;
-      margin: 24px 0;      // 👈 idem, propriété complète
+      margin: 24px 0;      
     }
     &__link {
       font-size: 14px;

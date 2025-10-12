@@ -16,7 +16,7 @@
 .collapse__chevron{width:18px;height:18px;transition:transform 300ms ease-in-out}
 .collapse[open] .collapse__chevron{transform:rotate(180deg)}
 
-/* 👉 Animation CSS SEULEMENT (slide basique) */
+/* Animation CSS SEULEMENT (slide basique) */
 .collapse__content{
   overflow:hidden;
   max-height:0;                /* fermé */
@@ -26,7 +26,7 @@
   transform: translateY(-4px);
 }
 .collapse[open] .collapse__content{
-  max-height:800px;            /* valeur "assez grande" pour couvrir ton contenu */
+  max-height:800px;            /*ouvert*/
   opacity:1;
   transform: translateY(0);
 }
