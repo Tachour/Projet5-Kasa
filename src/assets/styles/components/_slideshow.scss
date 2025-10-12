@@ -42,17 +42,21 @@
   filter: drop-shadow(0 2px 4px rgba(0,0,0,.5));
 }
 
-/* Compteur 1/5 */
+
 .slideshow__count {
   position: absolute;
+  bottom: 24px;            
   left: 50%;
-  bottom: 16px;
   transform: translateX(-50%);
-  color: #fff;
-  font-weight: 600;
-  font-size: 14px;
-  text-shadow: 0 2px 4px rgba(0,0,0,.6);
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 143%;
+  letter-spacing: 0;
+  text-shadow: none;       
 }
+
 
 /* ===== Mobile 375–480 ===== */
 @media (max-width: 480px) {

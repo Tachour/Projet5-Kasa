@@ -10,8 +10,8 @@ export default function Logement() {
   const logement = logements.find((item) => item.id === id);
 
   if (!logement) {
-  return <NotFound />;
-}
+    return <NotFound />;
+  }
 
 
   const {
