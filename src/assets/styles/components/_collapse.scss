@@ -23,61 +23,61 @@
 .collapse__header::-webkit-details-marker { display: none; }
 .collapse__title { line-height: 1.2; }
 
-/* Chevron : ouverture animée, fermeture instantanée */
-.collapse__chevron { width: 18px; height: 18px; } /* pas de transition par défaut */
+
+.collapse__chevron { width: 18px; height: 18px; } 
 .collapse[open] .collapse__chevron {
-  transition: transform 300ms ease-in-out; /* seulement à l’ouverture */
+  transition: transform 300ms ease-in-out; 
   transform: rotate(180deg);
 }
 
-/* Slide du conteneur : ouverture animée, fermeture instantanée */
+
 .collapse__content {
   overflow: hidden;
   max-height: 0;
   background: #f6f6f6;
-  /* pas de transition par défaut => fermeture instantanée */
+  
 }
 .collapse[open] .collapse__content {
   max-height: 800px;
-  transition: max-height 320ms ease; /* seulement à l’ouverture */
+  transition: max-height 320ms ease; 
 }
 
-/* Contenu interne */
+
 .collapse__inner {
   padding: 16px;
   color: #333;
   line-height: 1.5;
 }
 
-/* ===== Texte animé : rejouable à chaque ouverture + 1ère ouverture garantie ===== */
+
 .collapse__text {
-  --slide-name: none;                 /* état fermé */
+  --slide-name: none;                 
   opacity: 0;
   transform: translateY(-24px);
   will-change: transform, opacity;
-  animation: var(--slide-name) 400ms ease; /* animé uniquement à l’ouverture */
+  animation: var(--slide-name) 400ms ease; 
 }
 
 .collapse[open] .collapse__text {
-  --slide-name: slide-in;             /* change le nom => relance l’anim à chaque open */
+  --slide-name: slide-in;             
   opacity: 1;
   transform: translateY(0);
 }
 
-/* reset fermé (instantané, aucune anim) */
+
 .collapse:not([open]) .collapse__text {
   --slide-name: none;
   opacity: 0;
   transform: translateY(-24px);
 }
 
-/* Keyframes */
+
 @keyframes slide-in {
   from { opacity: 0; transform: translateY(-24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Assure l’anim au tout premier open */
+
 @starting-style {
   .collapse[open] .collapse__text {
     opacity: 0;
@@ -92,7 +92,7 @@
   .collapse__inner { padding: 12px 14px; }
 }
 
-/* Réduction de mouvement */
+
 @media (prefers-reduced-motion: reduce) {
   .collapse__chevron,
   .collapse__content { transition: none !important; }
