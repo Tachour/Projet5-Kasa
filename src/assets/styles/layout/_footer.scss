@@ -2,15 +2,20 @@
 @use "../base/mixins" as *;
 
 .footer {
-  background: $color-footer-bg;   
-  color: $color-footer-text;      
+  /* fond sur toute la largeur de la fenêtre */
+  background: $color-footer-bg;
+  color: $color-footer_text; // ou $color-footer-text selon ta var
+  /* full-bleed même si le footer est dans un .container parent */
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
 
   .footer__inner {
-    @include container;           
-    min-height: 209px;            
-    padding-block: 32px;          
+    @include container;       // largeur limitée + centré
+    min-height: 209px;
+    padding-block: 32px;
     display: grid;
-    place-items: center;          
+    place-items: center;
     row-gap: 12px;
     text-align: center;
   }
@@ -27,12 +32,11 @@
     line-height: 1.2;
   }
 
-  /* Mobile */
   @media (max-width: 480px) {
     .footer__inner {
-    min-height: 209px;   
-    padding-block: 32px; 
-  }
+      min-height: 209px;
+      padding-block: 32px;
+    }
     .footer__logo { height: 32px; }
     .footer__copy { font-size: 14px; }
   }

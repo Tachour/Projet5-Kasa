@@ -20,83 +20,85 @@
   text-align: left;
   list-style: none;
 }
+.collapse__header::-webkit-details-marker { display: none; }
+.collapse__title { line-height: 1.2; }
 
-.collapse__header::-webkit-details-marker {
-  display: none;
-}
-
-.collapse__title {
-  line-height: 1.2;
-}
-
-.collapse__chevron {
-  width: 18px;
-  height: 18px;
-  transition: transform 300ms ease-in-out;
-}
-
+/* Chevron : ouverture animée, fermeture instantanée */
+.collapse__chevron { width: 18px; height: 18px; } /* pas de transition par défaut */
 .collapse[open] .collapse__chevron {
+  transition: transform 300ms ease-in-out; /* seulement à l’ouverture */
   transform: rotate(180deg);
 }
 
-/* === Conteneur : slide basique (inchangé) === */
+/* Slide du conteneur : ouverture animée, fermeture instantanée */
 .collapse__content {
   overflow: hidden;
   max-height: 0;
   background: #f6f6f6;
-  transition: max-height 200ms ease;
-  /* le conteneur s'ouvre d'abord */
+  /* pas de transition par défaut => fermeture instantanée */
+}
+.collapse[open] .collapse__content {
+  max-height: 800px;
+  transition: max-height 320ms ease; /* seulement à l’ouverture */
 }
 
-/* === Stagger sur le contenu : apparition décalée et plus lente === */
+/* Contenu interne */
 .collapse__inner {
   padding: 16px;
   color: #333;
   line-height: 1.5;
-  transition: transform 680ms ease-out, ;
+}
 
+/* ===== Texte animé : rejouable à chaque ouverture + 1ère ouverture garantie ===== */
+.collapse__text {
+  --slide-name: none;                 /* état fermé */
   opacity: 0;
-  transform: translateY(-60px);
-
+  transform: translateY(-24px);
+  will-change: transform, opacity;
+  animation: var(--slide-name) 400ms ease; /* animé uniquement à l’ouverture */
 }
 
-/* État ouvert */
-.collapse[open] .collapse__content {
-  max-height: 800px;
-  
-}
-
-.collapse[open] .collapse__inner {
+.collapse[open] .collapse__text {
+  --slide-name: slide-in;             /* change le nom => relance l’anim à chaque open */
   opacity: 1;
   transform: translateY(0);
 }
 
-.collapse:not([open]) .collapse__inner {
-  transition-delay: 0ms;
+/* reset fermé (instantané, aucune anim) */
+.collapse:not([open]) .collapse__text {
+  --slide-name: none;
+  opacity: 0;
+  transform: translateY(-24px);
+}
+
+/* Keyframes */
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(-24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Assure l’anim au tout premier open */
+@starting-style {
+  .collapse[open] .collapse__text {
+    opacity: 0;
+    transform: translateY(-24px);
+  }
 }
 
 /* Mobile */
 @media (max-width: 480px) {
-  .collapse__header {
-    padding: 12px 14px;
-  }
-
-  .collapse__chevron {
-    width: 16px;
-    height: 16px;
-  }
-
-  .collapse__inner {
-    padding: 12px 14px;
-  }
+  .collapse__header { padding: 12px 14px; }
+  .collapse__chevron { width: 16px; height: 16px; }
+  .collapse__inner { padding: 12px 14px; }
 }
 
-/* Accessibilité / réduction de mouvement */
+/* Réduction de mouvement */
 @media (prefers-reduced-motion: reduce) {
-
   .collapse__chevron,
-  .collapse__content,
-  .collapse__inner {
-    transition: none !important;
+  .collapse__content { transition: none !important; }
+  .collapse__text {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
