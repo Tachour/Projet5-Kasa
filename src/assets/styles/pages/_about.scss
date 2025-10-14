@@ -1,0 +1,27 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+/* Centrer les collapses et les borner à 80% */
+.about__collapses {
+  display: grid;
+  gap: 30px; /* ta valeur maquette */
+}
+
+.about__collapses .collapse {
+  width: 100%;
+  max-width: 82%;
+  margin-inline: auto; /* centre horizontalement */
+}
+
+/* Mobile : pleine largeur (ou 335px si tu préfères) */
+@include respond(md) {
+  .about__collapses .collapse {
+    max-width: 100%; /* ou: max-width: 335px; */
+  }
+}
+
+@media (max-width: 768px) {
+    .about .about__banner {
+        max-height: 111px; 
+        border-radius: 12px;
+    }
+}

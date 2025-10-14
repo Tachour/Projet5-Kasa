@@ -1,0 +1,21 @@
+@use "../base/variables" as *;
+@use "../base/mixins" as *;
+
+@media screen and (min-width: 375px){
+    #content {
+        max-width: 100%;
+        --gutter : 16px;
+    }
+
+//     .banner {
+//         max-width: 90%;
+//     }
+
+//     .card-grid {
+//         max-width: 90%;
+//     }
+
+//     .card {
+//         max-width: 90%;
+//     }
+}

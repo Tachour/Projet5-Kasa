@@ -85,7 +85,7 @@ main#content {
 
 @media (max-width: 768px) {
   :root { --gutter: 16px; }
-  .about .about__banner { height: 160px; border-radius: 12px; }
+  .about .about__banner { max-height: 111px; border-radius: 12px; }
   .collapse__header { padding: 12px 14px; font-size: 0.95rem; }
   .collapse__inner { padding: 12px 14px; }
 }
