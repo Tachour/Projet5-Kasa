@@ -3,7 +3,7 @@
   --e-content: cubic-bezier(.2, .9, .1, 1);
   --e-height: cubic-bezier(.2, .9, .1, 1);
   --e-text: cubic-bezier(.16,.84,.24,1);
---t-height: 600ms;
+  --t-height: 600ms;
   --t-content: 1200ms;
   --t-inner: 560ms;
   --t-text: 400ms;
@@ -42,10 +42,14 @@
 .collapse__chevron {
   width: 18px;
   height: 18px;
+  transform: rotate(180deg); 
   transition: transform var(--t-text) var(--e);
 }
+
 .collapse.is-open .collapse__chevron,
-.collapse[open] .collapse__chevron { transform: rotate(180deg); }
+.collapse[open] .collapse__chevron {
+  transform: rotate(0deg); 
+}
 
 .collapse__content {
   display: grid;
