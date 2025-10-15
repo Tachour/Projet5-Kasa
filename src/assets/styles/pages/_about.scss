@@ -9,24 +9,21 @@
   gap: 30px;
   margin-inline: auto;
 
-  /* Desktop : largeur Figma exacte */
+  /* Desktop */
   @media (min-width: 769px) {
     width: 1023px;
   }
 
-  /* Mobile/Tablette : pleine largeur (ou 335px si tu préfères) */
+  /* Mobile/Tablette */
   @include respond(md) {
     width: 100%;
-    /* Pour coller strictement à Figma mobile :
-       // width: 335px;
-    */
   }
 }
 
 /* Items : occupent toute la largeur du parent */
 .about__collapses .collapse {
   width: 100%;
-  margin: 0; /* centrage géré par le parent */
+  margin: 0; 
 }
 
 /* =========================

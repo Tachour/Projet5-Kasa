@@ -2,16 +2,14 @@
 @use "../base/mixins" as *;
 
 .footer {
-  /* fond sur toute la largeur de la fenêtre */
   background: $color-footer-bg;
-  color: $color-footer_text; // ou $color-footer-text selon ta var
-  /* full-bleed même si le footer est dans un .container parent */
+  color: $color-footer_text; 
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
 
   .footer__inner {
-    @include container;       // largeur limitée + centré
+    @include container;       
     min-height: 209px;
     padding-block: 32px;
     display: grid;
