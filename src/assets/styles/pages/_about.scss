@@ -1,36 +1,51 @@
-@use "../base/variables" as *;
-@use "../base/mixins" as *;
-
-/* =========================
-   Collapses (bloc parent)
-   ========================= */
-.about__collapses {
-  display: grid;
-  gap: 30px;
+/* 1) Bannière */
+.about .about__banner {
   margin-inline: auto;
-
-  /* Desktop */
-  @media (min-width: 769px) {
-    width: 1023px;
-  }
-
-  /* Mobile/Tablette */
-  @include respond(md) {
-    width: 100%;
-  }
+  overflow: hidden;
+  border-radius: 24px;
+  max-width: 1240px;
+  height: clamp(180px, 24vw, 223px);
 }
 
-/* Items : occupent toute la largeur du parent */
-.about__collapses .collapse {
+.about .about__banner img {
+  display: block;
   width: 100%;
-  margin: 0; 
+  height: 100%;
+  object-fit: cover;
 }
 
-/* =========================
-   Bannière About (mobile)
-   ========================= */
+/* 2) Collapses */
+.about .about__collapses {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin: 24px auto 0;
+  width: 100%;
+  max-width: 1023px;
+}
+
+/* 3) Items */
+.about .about__collapses .collapse {
+  width: 100%;
+  margin: 0;
+}
+
+.collapse__header {
+  padding: 14px 20px;
+  border-radius: 10px;
+  justify-content: space-between;
+}
+
+/* ===== Breakpoints ===== */
+@media (min-width: 768px) {
+  .about .about__collapses {
+    width: 70%;
+  }
+}
+
 @media (max-width: 768px) {
   .about .about__banner {
+    max-width: 90%;
     max-height: 111px;
     border-radius: 12px;
   }

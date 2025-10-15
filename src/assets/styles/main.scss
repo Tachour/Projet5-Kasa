@@ -17,8 +17,17 @@
 @use "./pages/logement";
 @use "./pages/about";
 
-html, body, #root { height: 100%; }
-html, body { overflow-x: hidden; }
+/* ===== Base ===== */
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
 
 body {
   margin: 0;
@@ -27,52 +36,83 @@ body {
   background: $color-bg;
 }
 
-/* ===== About – largeur des collapses ===== */
-/* Mobile/tablette par défaut : pleine largeur (centrée) */
-.about .about__collapses {
-  margin-inline: auto;
-  width: 92%;
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-/* Desktop uniquement : largeur figma 1023px */
-@media (min-width: 769px) {
-  .about .about__collapses {
-    width: 1023px;
-  }
+.header,
+.footer {
+  flex: 0 0 auto;
+  margin: 0;
 }
 
-#root { min-height: 100vh; display: flex; flex-direction: column; }
-.header { flex: 0 0 auto; margin: 0; }
-.footer { flex: 0 0 auto; margin: 0; }
-main#content { flex: 1 0 auto; }
+main#content {
+  flex: 1 0 auto;
+  padding-bottom: clamp(40px, 6vw, 80px);
+}
+
 
 .container {
   @include container;
 }
 
 @media (max-width: 480px) {
-  .container { padding-left: 20px; padding-right: 20px; }
+  .container {
+    padding-inline: 20px;
+  }
 }
 
-/* ===== Mobile (≤ 768px) : aligner header, bannière et collapses ===== */
-@media (max-width: 768px) {
-  /* Le conteneur interne du header (celui qui entoure logo + nav).
-     Adapte le sélecteur si ton HTML diffère (ex: .header__inner). */
+
+.about .about__collapses {
+  width: 90%;
+  max-width: 1023px;
+  margin-inline: auto;
+}
+
+
+@media (min-width: 769px) {
+  .about .about__collapses {
+    width: 70%;
+  }
+}
+
+
+@media (max-width: 480px) {
   .header .header__inner {
     width: 100%;
-    max-width: 335px;   /* même valeur que ta bannière mobile */
+    max-width: 335px;
     margin-inline: auto;
-    padding-inline: 0;  /* pas de padding latéral, comme la bannière */
+    padding-inline: 0;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 12px;
+    min-width: 0;
   }
-
 }
 
-/* ===== Mobile (≤ 768px) : rythme vertical global ===== */
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .header .header__inner {
+    width: 100%;
+    max-width: clamp(480px, 92vw, 720px);
+    margin-inline: auto;
+    padding-inline: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(12px, 3vw, 24px);
+    min-width: 0;
+    flex-wrap: nowrap;
+  }
+}
+
+
 @media (max-width: 768px) {
-  main#content > * + * {
+
+  main#content>*+* {
     margin-top: 40px;
   }
 
@@ -82,18 +122,15 @@ main#content { flex: 1 0 auto; }
   .about__collapses {
     margin-top: 0;
   }
-}
 
-@media (max-width: 768px) {
   .notfound {
-    width: 92%;
-    max-width: 335px;     
+    width: 90%;
+    max-width: 335px;
     margin-inline: auto;
-    text-align: center;   
+    text-align: center;
   }
 
-  .notfound > * + * {
+  .notfound>*+* {
     margin-top: 40px;
   }
 }
-
