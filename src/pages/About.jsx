@@ -11,29 +11,29 @@ export default function About() {
       <div className="about__collapses">
         <Collapse title="Fiabilité">
           <p className="collapse__text">
-            Les annonces sont vérifiées et régulièrement mises à jour pour vous
-            garantir des informations fiables et à jour.
+            Les annonces postées sur Kasa garantissent une fiabilité totale. Les photos sont conformes aux logements, et toutes les informations sont régulièrement vérifiées par nos équipes.
           </p>
         </Collapse>
 
         <Collapse title="Respect">
           <p className="collapse__text">
-            La courtoisie et le respect guident nos échanges : hôtes et
-            voyageurs s’engagent à préserver la qualité des logements.
+            La bienveillance fait partie des valeurs fondatrices de Kasa. Tout comportement discriminatoire ou de perturbation du voisinage entraînera une exclusion de notre plateforme.
           </p>
         </Collapse>
 
         <Collapse title="Service">
           <p className="collapse__text">
-            Un support réactif et des outils simples vous accompagnent avant,
-            pendant et après votre séjour.
+            Nos équipes se tiennent à votre disposition pour vous fournir une expérience parfaite. N'hésitez pas à nous contacter si vous avez la moindre question.
           </p>
         </Collapse>
 
         <Collapse title="Sécurité">
           <p className="collapse__text">
-            Les paiements sont sécurisés et vos données personnelles protégées
-            selon les meilleures pratiques du secteur.
+            La sécurité est la priorité de Kasa. Aussi bien pour nos hôtes que pour les voyageurs, chaque logement correspond aux critères de sécurité établis par nos services. 
+            En laissant une note aussi bien à l'hôte qu'au locataire, cela permet à nos équipes de vérifier que les standards sont bien respectés. 
+            Nous organisons également des ateliers sur la sécurité domestique pour nos hôtes.
+
+
           </p>
         </Collapse>
       </div>

@@ -1,27 +1,40 @@
 @use "../base/variables" as *;
 @use "../base/mixins" as *;
-/* Centrer les collapses et les borner à 80% */
+
+/* =========================
+   Collapses (bloc parent)
+   ========================= */
 .about__collapses {
   display: grid;
-  gap: 30px; /* ta valeur maquette */
-}
+  gap: 30px;
+  margin-inline: auto;
 
-.about__collapses .collapse {
-  width: 100%;
-  max-width: 82%;
-  margin-inline: auto; /* centre horizontalement */
-}
+  /* Desktop : largeur Figma exacte */
+  @media (min-width: 769px) {
+    width: 1023px;
+  }
 
-/* Mobile : pleine largeur (ou 335px si tu préfères) */
-@include respond(md) {
-  .about__collapses .collapse {
-    max-width: 100%; /* ou: max-width: 335px; */
+  /* Mobile/Tablette : pleine largeur (ou 335px si tu préfères) */
+  @include respond(md) {
+    width: 100%;
+    /* Pour coller strictement à Figma mobile :
+       // width: 335px;
+    */
   }
 }
 
+/* Items : occupent toute la largeur du parent */
+.about__collapses .collapse {
+  width: 100%;
+  margin: 0; /* centrage géré par le parent */
+}
+
+/* =========================
+   Bannière About (mobile)
+   ========================= */
 @media (max-width: 768px) {
-    .about .about__banner {
-        max-height: 111px; 
-        border-radius: 12px;
-    }
+  .about .about__banner {
+    max-height: 111px;
+    border-radius: 12px;
+  }
 }

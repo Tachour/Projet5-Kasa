@@ -15,6 +15,7 @@
 /* Pages */
 @use "./pages/notfound";
 @use "./pages/logement";
+@use "./pages/about";
 
 html, body, #root { height: 100%; }
 html, body { overflow-x: hidden; }
@@ -26,16 +27,77 @@ body {
   background: $color-bg;
 }
 
+/* ===== About – largeur des collapses ===== */
+/* Mobile/tablette par défaut : pleine largeur (centrée) */
+.about .about__collapses {
+  margin-inline: auto;
+  width: 92%;
+}
+
+/* Desktop uniquement : largeur figma 1023px */
+@media (min-width: 769px) {
+  .about .about__collapses {
+    width: 1023px;
+  }
+}
+
 #root { min-height: 100vh; display: flex; flex-direction: column; }
 .header { flex: 0 0 auto; margin: 0; }
-.footer { flex: 0 0 auto; margin: 0; }      
+.footer { flex: 0 0 auto; margin: 0; }
 main#content { flex: 1 0 auto; }
 
 .container {
-  @include container;                 
-  max-width: 1240px;
+  @include container;
 }
 
 @media (max-width: 480px) {
   .container { padding-left: 20px; padding-right: 20px; }
 }
+
+/* ===== Mobile (≤ 768px) : aligner header, bannière et collapses ===== */
+@media (max-width: 768px) {
+  /* Le conteneur interne du header (celui qui entoure logo + nav).
+     Adapte le sélecteur si ton HTML diffère (ex: .header__inner). */
+  .header .header__inner {
+    width: 100%;
+    max-width: 335px;   /* même valeur que ta bannière mobile */
+    margin-inline: auto;
+    padding-inline: 0;  /* pas de padding latéral, comme la bannière */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+}
+
+/* ===== Mobile (≤ 768px) : rythme vertical global ===== */
+@media (max-width: 768px) {
+  /* Ajoute 40px d’espace entre chaque bloc frère direct de <main> */
+  main#content > * + * {
+    margin-top: 40px;
+  }
+
+  /* Évite le double-espacement si certains blocs ont déjà un margin-top */
+  .banner,
+  .about__banner,
+  .cards-grid,
+  .about__collapses {
+    margin-top: 0;
+  }
+}
+/* ===== Mobile (≤ 768px) : rythme & largeur pour la page 404 ===== */
+@media (max-width: 768px) {
+  /* Contrainte de largeur + centrage (même rythme que le reste) */
+  .notfound {
+    width: 92%;
+    max-width: 335px;     /* optionnel : calé sur la bannière mobile */
+    margin-inline: auto;
+    text-align: center;   /* si tu veux centrer le contenu */
+  }
+
+  /* 40px d’espacement vertical entre chaque bloc de la page 404 */
+  .notfound > * + * {
+    margin-top: 40px;
+  }
+}
+
