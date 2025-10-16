@@ -4,10 +4,11 @@
 .banner {
   @include container;
   position: relative;
-  height: 223px;
-  border-radius: 25px;
-  overflow: hidden;
-  margin-top: $space-4;
+  isolation: isolate;
+  min-height: clamp(120px, 24vw, 223px);
+  border-radius: 20px;
+  overflow: clip;
+  margin-block: $space-4 0;
   background: #000;
 
   img {
@@ -16,13 +17,14 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    display: block;
   }
 
+  /* léger voile */
   .banner__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(0deg, rgba(0,0,0,.3), rgba(0,0,0,.3));
-    border-radius: 25px;
+    background: linear-gradient(0deg, rgba(0,0,0,.30), rgba(0,0,0,.30));
     pointer-events: none;
   }
 
@@ -30,50 +32,54 @@
     position: relative;
     z-index: 1;
     color: #fff;
-    font-size: 48px;
-    line-height: 1.1;
-    text-align: center;
-    padding-inline: 16px;
+    font-size: clamp(24px, 4vw, 48px);
+    line-height: 1.15;
     display: grid;
     place-items: center;
-    height: 100%;
-  }
+    text-align: center;
+    padding-inline: 16px;
+    min-height: inherit; /* occupe toute la hauteur */
 
-  /* ===== Mobile ≤ md ===== */
-  @include respond(md) {
-    height: 111px;
-    width: 350px;
-    max-width: 350px;
-    margin-inline: auto;
-    padding-inline: 0;
-    border-radius: 10px;
-
-    .banner__overlay { border-radius: 10px; }
-
-    .banner__title {
-      font-size: 24px;
-      line-height: 1.25;
-      text-align: left;
-      justify-items: start;  
-      align-items: center;   
-      padding-inline: 16px;  
-    }
+    /* le <br> spécial est caché par défaut */
+    .br-mobile { display: none; }
   }
 }
 
-.banner--no-title {
-  .banner__title { display: none; }
+/* ===== Petits écrans ===== */
+@media (max-width: $bp-md) {
+  .banner {
+    min-height: 140px;
+    border-radius: 12px;
+  }
+
+  .banner--home .banner__title {
+    text-align: left;
+    place-items: center start;
+    padding-inline: 16px;
+    .br-mobile { display: inline; }
+  }
+
+  .banner--about .banner__title {
+    text-align: center;
+    place-items: center;
+  }
 }
+
+.banner--no-title .banner__title { display: none; }
 
 .about__banner {
-  height: 220px;
+  @include container;
+  position: relative;
+  isolation: isolate;
+  min-height: clamp(140px, 24vw, 220px);
   border-radius: 20px;
-  overflow: hidden;
-  margin: 24px 0 28px;
-}
-.about__banner img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
+  overflow: clip;
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }

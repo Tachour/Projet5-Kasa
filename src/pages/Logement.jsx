@@ -77,14 +77,14 @@ export default function Logement() {
         {/* Deux panneaux */}
         <section className="logement__rows" aria-label="Détails du logement">
           <div className="logement__row">
-            <Collapse title="Description">
-              <p>{description}</p>
+            <Collapse title="Description ">
+              <p className="collapse__text">{description}</p>
             </Collapse>
           </div>
 
           <div className="logement__row">
             <Collapse title="Équipements">
-              <ul className="equipments">
+              <ul className="equipments collapse__text">
                 {equipments.map((item) => (
                   <li key={item}>{item}</li>
                 ))}

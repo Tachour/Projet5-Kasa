@@ -36,6 +36,16 @@
       padding-block: 32px;
     }
     .footer__logo { height: 32px; }
-    .footer__copy { font-size: 14px; }
+    .footer__copy { font-size: 14px; margin-top: -50px;}
+  }
+}
+
+@media (max-width: 480px) {
+  .footer__copy {
+    max-width: 140px;      
+    margin-inline: auto;   
+    line-height: 1.3;      
+    word-break: break-word;
+    text-align: center;
   }
 }
