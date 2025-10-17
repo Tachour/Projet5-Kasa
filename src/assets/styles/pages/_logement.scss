@@ -38,7 +38,6 @@
 .logement .logement__gallery { margin-top: 16px; margin-bottom: 16px; }
 .logement .logement__row .collapse { background: transparent; }
 
-/* ===== Mobile 375–480 ===== */
 @media (max-width: 480px) {
   .logement .container { padding-left: 16px; padding-right: 16px; }
   .logement .logement__title { font-size: 22px; line-height: 1.25; margin-bottom: 6px; }
@@ -93,4 +92,8 @@
 
 @media (min-width: 344px) and (max-width: 768px) {
   .logement .container, .logement .rating  { width: 100%; }
+}
+
+@media (min-width: 769px) {
+  .header .header__inner, .logement .container { padding: 0; }
 }
