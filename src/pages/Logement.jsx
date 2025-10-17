@@ -50,7 +50,11 @@ export default function Logement() {
 
           <div className="logement__side">
             <div className="host">
-              <span className="host__name">{host.name}</span>
+              <span className="host__name">
+                {host.name.split(" ")[0]} <br />
+                {host.name.split(" ")[1]}
+              </span>
+
 
               {host.picture ? (
                 <img
